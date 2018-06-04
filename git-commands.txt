@@ -1,0 +1,15 @@
+1. git init --> It creates the .git folder which keeps track of all the files in the repository.
+
+2. git status --> It tells about the status of the files kept in the repository whether there are untracked files(only in the working dir) or modified files(tracked but not updated) or staged files(added to index but noot committed yet).
+
+3. git add [filename] --> It adds the mentioned modified file to the staging area.
+
+4. git commit -m [message] --> It saves the changes in the files kept in the staging area to the repository.
+
+5. git log --> It maintains a log which contains the information about changes saved along with branch name, time, a unique string to identify a commit and 	much more.
+
+6. git config --> It is used to acess and setup username and user email values at different levels namely global(stores the configuration in the home dir), 	system(in root dir) and local(in the repository from where the command was run).
+
+7. git remote add orgin [url]--> It will create a connection to the remote repository (whose url is mentioned) by the name origin.
+
+8. git push -u origin master --> It will push the changes in the current branch of local repository to the master branch of the remote repository.

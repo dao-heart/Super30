@@ -47,12 +47,16 @@ public class Assignment3 {
 	}
 	public static int prime(int n) {
 		int i;
-		for(i=2;i<=n;i++)
+		int flag=1;
+		for(i=2;i<=n/2;i++)
 		{
-			if(i==n||n%i==0)
+			if(n%i==0)
+			{
+				flag=0;
 				break;
+			}
 		}
-		if(i==n)
+		if(flag==1||n==1)
 			return 1;
 		else
 			return 0;

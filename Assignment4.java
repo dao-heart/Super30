@@ -77,14 +77,25 @@ public class Assignment4 {
 	}
 
 	public static double[] sort(double arr[]) {
+		/*********************************************************
+			To minimize computation I have used insertion sort.
+			Additionally I have added a else statement which will 
+			take the control out of the loop. This else statement
+			will run if the element arr[i] is greater than the
+			compared element arr[j]. For example the array is 
+			[3,2,4,5] and after 2nd iteration of the outer loop 
+			it will be [2,3,4,5] now for third iteration the if
+			statement will not run because 4 is greater than 3 and
+			as the array is sorted we don't need to check further
+			backwards. So the control will come out of the loop
+			because of the else statement and the Computation is 
+			further minimized. 
+		*************************************************************/
 		int i,j,size = arr.length;
 		int loc;
-		int temp[] = new int[size];
-		int flag; 
 		for(i=0;i<size;i++)
 		{
 			loc=i;
-			flag=1;
 			for(j=i-1;j>=0;j--)
 			{
 				if(arr[i]<arr[j])
@@ -93,13 +104,11 @@ public class Assignment4 {
 					arr[j]=arr[i]-arr[j];
 					arr[i]-=arr[j];
 					i--;
-					flag=0;
 				}
-				else if(temp[j]==1)
+				else
 					break;
 			}
 			i=loc;
-			temp[i]=flag;
 		}
 		return arr;
 	}

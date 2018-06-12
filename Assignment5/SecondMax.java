@@ -9,25 +9,21 @@ class SecondMax {
         this.arr = arr;
     }
     public int maxElem() {
-        int max=arr[0], smax=arr[1], i;
-        int flag=1;
+        int max=arr[0], smax=arr[0], i;
         for(i=1;i<size;i++)
         {
             if(max<arr[i])
             {
-                smax=max;
                 max=arr[i];
-                flag=0;
             }
+            else
+                smax=arr[i];
         }
-        if(flag==1)
+        for(i=0;i<arr.length;i++)
         {
-            for(i=2;i<arr.length;i++)
+            if(smax<arr[i]&&arr[i]!=max)
             {
-                if(smax<arr[i])
-                {
-                    smax=arr[i];
-                }
+                smax=arr[i];
             }
         }
         return smax;

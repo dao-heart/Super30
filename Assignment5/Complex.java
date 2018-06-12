@@ -2,19 +2,19 @@ import java.util.Scanner;
 
 public class Complex {
     int real;
-    int imag;
+    int imaginary;
     public Complex() {
-        this.real = this.imag=0;
+        this.real = this.imaginary=0;
     }
-    public Complex(int real, int imag) {
+    public Complex(int real, int imaginary) {
         this.real = real;
-        this.imag = imag;
+        this.imaginary = imaginary;
     }
-    public void display() {
-        if(imag<0)
-            System.out.println(real+""+imag+"i");
+    public void Display() {
+        if(imaginary<0)
+            System.out.println(real+""+imaginary+"i");
         else
-            System.out.println(real+"+"+imag+"i");
+            System.out.println(real+"+"+imaginary+"i");
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -23,6 +23,6 @@ public class Complex {
         System.out.println("Enter imaginary part");
         int i = sc.nextInt();
         Complex c = new Complex(r,i);
-        c.display();
+        c.Display();
     }
 }

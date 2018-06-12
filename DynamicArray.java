@@ -1,15 +1,29 @@
 import java.util.Scanner;
 
 public class DynamicArray {
-
-    int arr[] = new int[10000];
+    static int size=5;
+    int arr[] = new int[size];
     int index;
     public DynamicArray() {
         index=0;
     }
     public void add(int elem) {
-        this.arr[index]=elem;
-        this.index++;
+        if(index==size)
+        {
+            int tempSize = size;
+            this.size+=size/2;
+            int tempArr[] = new int[size];
+            for(int i=0;i<tempSize;i++)
+                tempArr[i]=arr[i];
+            this.arr=tempArr;
+            this.arr[index] = elem;
+            this.index++;
+        }
+        else
+        {
+            this.arr[index]=elem;
+            this.index++;
+        }
     }
     public int size() {
         return index;
@@ -40,6 +54,9 @@ public class DynamicArray {
         da.add(1);
         da.add(2);
         da.add(4);
+        da.add(5);
+        da.add(6);
+        da.add(7);
         da.set(4,3);
         da.display();
         da.remove();

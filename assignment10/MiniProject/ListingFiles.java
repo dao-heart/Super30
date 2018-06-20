@@ -28,17 +28,19 @@ public class ListingFiles {
 
     public static void main(String[] args) throws IOException {
         try {
-            ArrayList<String> paths = new ArrayList<>(2);
-            paths.add("D:/CN");
-            paths.add("D:/CST");
-            for(String path: paths) {
-                List(path);
+            ArrayList<String> paths = new ArrayList<>(3);
+            FileReader in = new FileReader("abc.txt");
+            BufferedReader fin = new BufferedReader(in);
+            while(fin.ready()) {
+                paths.add(fin.readLine());
             }
-            
-            File fout = new File("Output.csv");
-            FileOutputStream Output = new FileOutputStream(fout);
-            ArrayList<String> FileNames = new ArrayList<String>(size);
-            String temp = "";
+            List(paths.get(0));
+            FileWriter out = new FileWriter(paths.get(1));
+            BufferedWriter fout = new BufferedWriter(out);
+            String temp = "FILENAMES, FILEPATHS\n\n";
+            for(int i=0;i<temp.length();i++)
+                fout.write(temp.charAt(i));
+
             for(int j=0;j<size;j++) {
                 for(int k=Files.get(j).length()-1;k>=0;k--)
                 {
@@ -47,32 +49,19 @@ public class ListingFiles {
                         for(int m=k+1;m<Files.get(j).length();m++) {
                             temp += Files.get(j).charAt(m);
                         }
-                        FileNames.add(""+temp);
+                        temp += ", " + Files.get(j)+"\n";
+                        for(int i=0;i<temp.length();i++)
+                            fout.write(temp.charAt(i));
                         break;
                     }
                 }
             }
-            System.out.println("All files in the given paths");
-            ArrayList<String> Csv = new ArrayList<String>(size+1);
-            Csv.add("FILENAMES, FILEPATHS\n\n");
-            for(int j=0;j<size;j++) {
-                Csv.add(""+FileNames.get(j)+", "+Files.get(j));
-            }
-            for(String fp: Csv) {
+            System.out.println("FILEPATHS\n");
+            for(String fp: Files)
                 System.out.println(fp);
-            }
-            int j=0,k=0;
-            char c;
-            while(j<size) {
-                c = Csv.get(j).charAt(k);
-                Output.write(c);
-                k++;
-                if(k==Csv.get(j).length()) {
-                    j++;
-                    k=0;
-                    Output.write('\n');
-                }
-            }
+            fin.close();
+            fout.flush();
+            fout.close();
         }
         catch(Exception e) {
             System.out.println("Exception occured: " + e);

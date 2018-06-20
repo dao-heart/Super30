@@ -73,15 +73,23 @@ public class StackImplementation {
             /*Using Binary Search*/
             int last=this.index-1, first=0;
             int mid = (first+last)/2;
-            while(first!=last&&arr[mid]!=elem) {
+            while(first!=last) {
                 if(arr[mid]>elem)
-                    last=mid-1;
+                    last = mid-1;
                 else if(arr[mid]<elem)
                     first = mid+1;
+                else {
+                	for(i=mid+1;i<=last;i++)
+                	{
+                		if(arr[mid]==arr[i])
+                			mid=i;
+                	}
+                	break;
+                }
                 mid = (last+first)/2;
             }
             if(arr[mid]==elem)
-                return mid;
+                return (this.index-1-mid);
             else
                 return -1;
         }
@@ -108,11 +116,11 @@ public class StackImplementation {
         stack.push(2);
         stack.push(4);
         stack.push(5);
-        stack.push(6);
+        stack.push(4);
         stack.push(7);
-        stack.push(8);
-        stack.push(9);
-        stack.push(10);
+        stack.push(4);
+        stack.push(4);
+        stack.push(4);
         stack.push(11);
         System.out.println("Element on the top of the stack: " + stack.peek());
         System.out.println("Element Found or not: " + stack.search(4));

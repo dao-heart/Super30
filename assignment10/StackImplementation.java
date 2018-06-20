@@ -48,48 +48,14 @@ public class StackImplementation {
     }
     public int search(int elem) {
         if(this.index!=0) {
-
-            /*Sorting Array elements*/
-            int i,j,loc;
-            int temp[] = new int[this.index];
-            for(i=0;i<this.index;i++)
-            {
-                loc=i;
-                for(j=i-1;j>=0;j--)
-                {
-                    if(temp[i]<temp[j])
-                    {
-                        temp[i]+=temp[j];
-                        temp[j]=temp[i]-temp[j];
-                        temp[i]-=temp[j];
-                        i--;
-                    }
-                    else
-                        break;
+            int i=-1;
+            for(i=this.index-1;i>=0;i--) {
+                if(arr[i]==elem) {
+                    break;
                 }
-                i=loc;
             }
-
-            /*Using Binary Search*/
-            int last=this.index-1, first=0;
-            int mid = (first+last)/2;
-            while(first!=last) {
-                if(arr[mid]>elem)
-                    last = mid-1;
-                else if(arr[mid]<elem)
-                    first = mid+1;
-                else {
-                	for(i=mid+1;i<=last;i++)
-                	{
-                		if(arr[mid]==arr[i])
-                			mid=i;
-                	}
-                	break;
-                }
-                mid = (last+first)/2;
-            }
-            if(arr[mid]==elem)
-                return (this.index-1-mid);
+            if(i!=-1)
+                return this.index-i-1;
             else
                 return -1;
         }
@@ -118,12 +84,13 @@ public class StackImplementation {
         stack.push(5);
         stack.push(4);
         stack.push(7);
+        stack.push(8);
         stack.push(4);
-        stack.push(4);
-        stack.push(4);
+        stack.push(10);
         stack.push(11);
         System.out.println("Element on the top of the stack: " + stack.peek());
         System.out.println("Element Found or not: " + stack.search(4));
+        System.out.println("Element Found or not: " + stack.search(3));
         System.out.println("Stack empty or not: " + stack.empty());
         System.out.println("Stack Capacity: " + stack.capacity());
         int size = stack.size();

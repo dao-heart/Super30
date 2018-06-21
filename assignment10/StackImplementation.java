@@ -2,21 +2,23 @@
 /*Functions - pop(), push(), peek(), search(), size(), empty()*/
 
 import java.util.Scanner;
+import java.lang.ArrayIndexOutOfBoundsException;
+import java.lang.Integer;
 import java.util.EmptyStackException;
 
-public class StackImplementation {
+public class StackImplementation<X> {
     static int size=8;
-    int arr[] = new int[size];
+    X arr[] = (X[])new Object[size];
     int index;
     public StackImplementation() {
         index=0;
     }
-    public void push(int elem) {
+    public void push(X elem) {
         if(index==size)
         {
             int tempSize = size;
             size+=size/2;
-            int tempArr[] = new int[size];
+            X tempArr[] = (X[])new Object[size];
             for(int i=0;i<tempSize;i++)
                 tempArr[i]=arr[i];
             this.arr=tempArr;
@@ -29,24 +31,30 @@ public class StackImplementation {
             this.index++;
         }
     }
-    public int pop() throws EmptyStackException {
-        int last = -1;
+    public X pop() throws EmptyStackException {
+        X last;
         try {
             this.index--;
             last = arr[index];
-            this.arr[index]=0;
+            this.arr[index]=null;
             return last;
         }
         catch(Exception e) {
             System.out.println("Exception Occurred: " + e);
         }
-        return last;
+        return null;
     }
-    public int peek() {
-        int last = arr[index-1];
-        return last;
+    public X peek() throws ArrayIndexOutOfBoundsException {
+        try {
+            X last = arr[index-1];
+            return last;
+        }
+        catch(Exception e) {
+            System.out.println("Exception Occurred: " + e);
+        }
+        return null;
     }
-    public int search(int elem) {
+    public int search(X elem) {
         if(this.index!=0) {
             int i=-1;
             for(i=this.index-1;i>=0;i--) {
@@ -76,21 +84,22 @@ public class StackImplementation {
     }
 
     public static void main(String[] args) {
-        StackImplementation stack= new StackImplementation();
+        StackImplementation<Double> stack= new StackImplementation<Double>();
         System.out.println("Stack Capacity: " + stack.capacity());
-        stack.push(1);
-        stack.push(2);
-        stack.push(4);
-        stack.push(5);
-        stack.push(4);
-        stack.push(7);
-        stack.push(8);
-        stack.push(4);
-        stack.push(10);
-        stack.push(11);
+        Double a=4.1;
+        stack.push(1.0);
+        stack.push(2.0);
+        stack.push(a);
+        stack.push(5.0);
+        stack.push(4.0);
+        stack.push(7.0);
+        stack.push(8.0);
+        stack.push(9.0);
+        stack.push(10.0);
+        stack.push(11.0);
         System.out.println("Element on the top of the stack: " + stack.peek());
-        System.out.println("Element Found or not: " + stack.search(4));
-        System.out.println("Element Found or not: " + stack.search(3));
+        System.out.println("Element Found or not: " + stack.search(a));
+        System.out.println("Element Found or not: " + stack.search(3.0));
         System.out.println("Stack empty or not: " + stack.empty());
         System.out.println("Stack Capacity: " + stack.capacity());
         int size = stack.size();

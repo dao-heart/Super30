@@ -58,5 +58,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousItem = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != previousItem )
+                    expandableListView.collapseGroup(previousItem );
+                previousItem = groupPosition;
+            }
+        });
     }
 }
